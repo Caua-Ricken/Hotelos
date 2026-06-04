@@ -34,7 +34,7 @@ const Hospede = conn.define('hospede', {
     unique: true,
     field: 'hos_email'
    },
-   Nacionalidade: {
+   nacionalidade: {
     type: DataTypes.STRING(50),
     allowNull: false,
     field: 'hos_nacionalidade'

@@ -1,8 +1,43 @@
 import { useState } from 'react'
 import { Outlet, NavLink } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import './App.css'
 
 function App() {
+    const location = useLocation();
+
+  const pageInfo = {
+    "/": {
+      title: "Dashboard",
+      subtitle: "Visão geral em tempo real • Turno: 07:00–15:00",
+    },
+    "/checkin": {
+      title: "Check-in",
+      subtitle: "Gerenciamento de entradas",
+    },
+    "/checkout": {
+      title: "Check-out",
+      subtitle: "Gerenciamento de saídas",
+    },
+    "/quartos": {
+      title: "Quartos",
+      subtitle: "Controle e disponibilidade",
+    },
+    "/hospedes": {
+      title: "Hóspedes",
+      subtitle: "Hóspedes ativos e histórico",
+    },
+    "/reservas": {
+      title: "Reservas",
+      subtitle: "Controle de reservas",
+    },
+    "/relatorios": {
+      title: "Relatórios",
+      subtitle: "Indicadores e estatísticas",
+    },
+  };
+
+  const currentPage = pageInfo[location.pathname] || pageInfo["/"];
 
   return (
     <div className="layout">
@@ -97,8 +132,8 @@ function App() {
       <main className="main-content">
         <header className="topbar">
           <div>
-            <h2>Dashboard</h2>
-            <p>Visão geral em tempo real • Turno: 07:00–15:00</p>
+            <h2>{currentPage.title}</h2>
+            <p>{currentPage.subtitle}</p>
           </div>
 
           <div className="actions">
