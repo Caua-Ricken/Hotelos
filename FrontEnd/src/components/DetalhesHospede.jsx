@@ -24,6 +24,7 @@ const DetalhesHospede = ({ open, hospede, onClose, onHospedeExcluido }) => {
 
       if (!res.ok) {
         console.error("Erro ao excluir hóspede");
+        alert("Não foi possível excluir o hóspede. Verifique se ele possui reservas ativas.");
         return;
       }
 

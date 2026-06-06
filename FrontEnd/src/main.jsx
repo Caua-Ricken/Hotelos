@@ -5,6 +5,7 @@ import App from './App.jsx'
 
 //rotas
 import Hospedes from './pages/Hospedes.jsx'
+import Reservas from './pages/Reservas.jsx'
 
 import {
   createBrowserRouter,
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         path: 'hospedes',
         element: <Hospedes />
       },
+      {
+        path: 'reservas',
+        element: <Reservas />
+      }
     ]
   },
 ])

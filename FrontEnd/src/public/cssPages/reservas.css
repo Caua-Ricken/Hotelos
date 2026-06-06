@@ -1,0 +1,274 @@
+.reservas-page {
+  min-height: 100vh;
+  background: #080d16;
+  color: #fff;
+  padding: 28px 36px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.reservas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.reservas-header h1 {
+  font-size: 24px;
+  color: #f4c95d;
+  margin-bottom: 4px;
+}
+
+.reservas-header p {
+  color: #7f8ca3;
+  font-size: 14px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-live {
+  color: #39e58c;
+  border: 1px solid #1d7a4c;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.btn-nova-reserva,
+.btn-salvar {
+  background: #f4c95d;
+  color: #080d16;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reservas-card {
+  background: #101722;
+  border: 1px solid #263244;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #263244;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header h2 {
+  font-size: 18px;
+}
+
+.reservas-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reservas-card th {
+  text-align: left;
+  padding: 16px 24px;
+  color: #74809b;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.reservas-card td {
+  padding: 18px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+}
+
+.hospede-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  background: #ff7a18;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.badge.pendente {
+  color: #f4c95d;
+  background: rgba(244, 201, 93, 0.15);
+  border: 1px solid rgba(244, 201, 93, 0.4);
+}
+
+.badge.confirmada {
+  color: #5ca8ff;
+  background: rgba(92, 168, 255, 0.15);
+  border: 1px solid rgba(92, 168, 255, 0.4);
+}
+
+.badge.cancelada {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.15);
+  border: 1px solid rgba(255, 107, 107, 0.4);
+}
+
+/* MODAL */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.modal-reserva {
+  width: 680px;
+  background: #101722;
+  border: 1px solid #2b374a;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  color: #f4c95d;
+  font-size: 22px;
+}
+
+.modal-header button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  color: #9ca8bd;
+  font-size: 13px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: #0b111b;
+  border: 1px solid #2b374a;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #f4c95d;
+}
+
+.form-group textarea {
+  height: 90px;
+  resize: none;
+}
+
+.form-group.full {
+  margin-top: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.btn-cancelar {
+  background: transparent;
+  color: #9ca8bd;
+  border: 1px solid #2b374a;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  color: white;
+  border-color: #5b6578;
+}
+
+.btn-nova-reserva:hover,
+.btn-salvar:hover {
+  background: #ffd978;
+}
+
+.select-status {
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s;
+}
+
+/* PENDENTE */
+.select-status.pendente {
+  color: #f4c95d;
+  background: rgba(244, 201, 93, 0.15);
+  border: 1px solid rgba(244, 201, 93, 0.45);
+}
+
+/* CONFIRMADA */
+.select-status.confirmada {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.15);
+  border: 1px solid rgba(74, 222, 128, 0.45);
+}
+
+/* CANCELADA */
+.select-status.cancelada {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.15);
+  border: 1px solid rgba(255, 107, 107, 0.45);
+}

@@ -1,4 +1,6 @@
 const Hospede = require('../models/Hospedes');
+const Reserva = require('../models/Reservas');
+
 
 module.exports = {
 
@@ -32,17 +34,34 @@ module.exports = {
 
    async excluirHospede(req, res) {
         const { id } = req.params;
-         console.log("DELETE recebido:", req.params.id);
 
         try {
-            const hospede = await Hospede.findByPk(id);
+        const hospede = await Hospede.findByPk(id);
 
-            if(!hospede) {
-                return res.status(404).json({ error: "Hóspede não encontrado" });
+        if (!hospede) {
+            return res.status(404).json({
+                error: "Hóspede não encontrado"
+            });
+        }
+
+        const reservaAtiva = await Reserva.findOne({
+            where: {
+                hospedeId: id,
+                status: ['pendente', 'confirmada']
             }
+        });
 
-            await hospede.destroy();
-            res.json({ message: "Hóspede excluído com sucesso" });
+        if (reservaAtiva) {
+            return res.status(400).json({
+                error: "Este hóspede possui reservas ativas."
+            });
+        }
+
+        await hospede.destroy();
+
+        res.json({
+            message: "Hóspede excluído com sucesso"
+        });
 
         } catch (error) {
             console.error("Erro ao excluir hóspede:", error);
