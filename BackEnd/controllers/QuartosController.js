@@ -13,4 +13,14 @@ module.exports = {
             res.status(500).json({ error: "Erro ao listar quartos livres" });
         }
     },
+
+    async listarTodosQuartos(req, res) {
+        try {
+            const quartos = await Quartos.findAll({ raw: true });
+            res.json(quartos);
+        } catch (error) {
+            console.error("Erro ao listar quartos:", error);
+            res.status(500).json({ error: "Erro ao listar quartos" });
+        }
+    },
 }

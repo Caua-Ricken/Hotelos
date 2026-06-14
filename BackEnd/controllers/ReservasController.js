@@ -31,6 +31,8 @@ module.exports = {
         observacoes
       });
 
+      await Quarto.update({ status: 'Reservado' }, { where: { id: quartoId } });
+
       res.status(201).json(novaReserva);
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -72,6 +74,15 @@ async alterarStatus(req, res) {
 
     reserva.status = status;
     await reserva.save();
+
+    if(status === 'cancelada') {
+      await Quarto.update({ status: 'Disponível' }, { where: { id: reserva.quartoId } });
+    }
+
+    if(status === 'confirmada' || status === 'pendente') {
+      await Quarto.update({ status: 'Reservado' }, { where: { id: reserva.quartoId } });
+    }
+
     res.json(reserva);
     
   } catch (error) {

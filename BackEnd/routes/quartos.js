@@ -6,5 +6,7 @@ const QuartosController = require('../controllers/QuartosController');
 
 router.get('/', QuartosController.listarQuartosLivres);
 
+router.get('/todos', QuartosController.listarTodosQuartos);
+
 
 module.exports = router;

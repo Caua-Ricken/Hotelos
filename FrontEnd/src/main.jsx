@@ -6,6 +6,7 @@ import App from './App.jsx'
 //rotas
 import Hospedes from './pages/Hospedes.jsx'
 import Reservas from './pages/Reservas.jsx'
+import Quartos from './pages/Quartos.jsx'
 
 import {
   createBrowserRouter,
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'reservas',
         element: <Reservas />
+      },
+      {
+        path: 'quartos',
+        element: <Quartos />
       }
     ]
   },
