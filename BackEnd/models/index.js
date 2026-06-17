@@ -4,6 +4,7 @@ const reserva = require('./Reservas');
 const estadias = require('./Estadias');
 const atividades = require('./Atividades');
 
+
 module.exports = {
     hospede,
     quarto,

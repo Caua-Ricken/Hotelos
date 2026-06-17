@@ -189,7 +189,7 @@ const ModalReserva = ({ open, onClose, onReservaCadastrada }) => {
             </div>
 
             <div className="form-group">
-              <label>Valor total</label>
+              <label>Valor Diaria</label>
               <input
                 type="number"
                 name="valorTotal"

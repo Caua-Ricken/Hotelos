@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../public/cssPages/quartos.css";
+import ModalQuarto from "../components/ModalQuarto";
 
 const Quartos = () => {
   const [quartos, setQuartos] = useState([]);
+
+  const [abrirModal, setAbrirModal] = useState(false);
+  const [quartoSelecionado, setQuartoSelecionado] = useState(null);
 
   useEffect(() => {
     buscarQuartos();
@@ -12,7 +16,19 @@ const Quartos = () => {
     try {
       const response = await fetch("http://localhost:3000/api/quartos/todos");
       const data = await response.json();
+ console.log("STATUS:", response.status);
+    console.log("DATA:", data);
+
+    if (!response.ok) {
+      setQuartos([]);
+      return;
+    }
+
+    if (Array.isArray(data)) {
       setQuartos(data);
+    } else {
+      setQuartos([]);
+    }
     } catch (error) {
       console.error("Erro ao buscar quartos:", error);
     }
@@ -41,6 +57,7 @@ const Quartos = () => {
     acc[quarto.andar].push(quarto);
     return acc;
   }, {});
+
 
   return (
     <div className="quartos-page">
@@ -74,6 +91,10 @@ const Quartos = () => {
                 <div
                   key={quarto.id}
                   className={`quarto-card ${corStatus(quarto.status)}`}
+                  onClick={() => {
+                    setQuartoSelecionado(quarto);
+                    setAbrirModal(true);
+                  }}
                 >
                   <strong>{quarto.numero}</strong>
                   <span>{quarto.tipo}</span>
@@ -83,6 +104,12 @@ const Quartos = () => {
           </div>
         ))}
       </section>
+
+      <ModalQuarto
+        open={abrirModal}
+        quarto={quartoSelecionado}
+        onClose={() => setAbrirModal(false)}
+      />
     </div>
   );
 };

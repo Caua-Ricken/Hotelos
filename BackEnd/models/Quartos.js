@@ -46,4 +46,5 @@ const Quartos = conn.define('quartos', {
   updatedAt: 'qua_updated_at'
 });
 
+
 module.exports = Quartos;
