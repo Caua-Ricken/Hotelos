@@ -1,9 +1,6 @@
 const {DataTypes} = require('sequelize');
 const conn = require('../db/conn');
 
-const hospede = require('./Hospedes');
-const quarto = require('./Quartos');
-
 const Reserva = conn.define('reservas', {
     id: {
     type: DataTypes.INTEGER,
@@ -53,18 +50,5 @@ const Reserva = conn.define('reservas', {
   updatedAt: 'res_updated_at'
 });
 
-Reserva.belongsTo(hospede, {
-    foreignKey: {
-        name: 'hospedeId',
-        field: 'res_hospede_id',
-    }
-})
-
-Reserva.belongsTo(quarto, {
-    foreignKey: {
-        name: 'quartoId',
-        field: 'res_quarto_id',
-    }
-})
 
 module.exports = Reserva;

@@ -34,6 +34,12 @@ const ModalHospede = ({ open, onClose, onHospedeCriado }) => {
             console.log("Hóspede cadastrado com sucesso:", novoHospede);
             await onHospedeCriado();
             onClose();
+
+            setNome("");
+            setCpf("");
+            setEmail("");
+            setTelefone("");
+            setNacionalidade("");
         } else {
             console.error("Erro ao cadastrar hóspede");
         }

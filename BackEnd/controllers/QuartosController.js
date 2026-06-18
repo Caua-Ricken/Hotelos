@@ -1,10 +1,4 @@
-const Quartos = require('../models/Quartos');
-const Reservas = require('../models/Reservas');
-const Hospedes = require('../models/Hospedes');
-
-Quartos.hasMany(Reservas, {
-    foreignKey: "quartoId",
-});
+const { Quartos, Reservas, Hospedes } = require('../models/index');
 
 module.exports = {
 

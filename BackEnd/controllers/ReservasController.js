@@ -1,7 +1,4 @@
-const Reserva = require('../models/Reservas');
-const Hospede = require('../models/Hospedes');
-const Quarto = require('../models/Quartos');
-
+const { Quartos, Reservas, Hospedes } = require('../models/index');
 
 module.exports = {
 
@@ -19,7 +16,7 @@ module.exports = {
     } = req.body;
 
     try {
-      const novaReserva = await Reserva.create({
+      const novaReserva = await Reservas.create({
         hospedeId: hospedeId,
         quartoId: quartoId,
         dataEntrada,
@@ -31,7 +28,7 @@ module.exports = {
         observacoes
       });
 
-      await Quarto.update({ status: 'Reservado' }, { where: { id: quartoId } });
+      await Quartos.update({ status: 'Reservado' }, { where: { id: quartoId } });
 
       res.status(201).json(novaReserva);
     } catch (error) {
@@ -41,14 +38,14 @@ module.exports = {
 async listarReservas(req, res) {
     try {
 
-        const reservas = await Reserva.findAll({
+        const reservas = await Reservas.findAll({
             include: [
                 {
-                    model: Hospede,
+                    model: Hospedes,
                     attributes: ['nome']
                 },
                 {
-                    model: Quarto,
+                    model: Quartos,
                     attributes: ['numero']
                 }
             ]
@@ -66,7 +63,7 @@ async alterarStatus(req, res) {
   const { status } = req.body;
 
   try {
-    const reserva = await Reserva.findByPk(id);
+    const reserva = await Reservas.findByPk(id);
 
     if(!reserva) {
       return res.status(404).json({ error: "Reserva não encontrada" });
@@ -76,11 +73,11 @@ async alterarStatus(req, res) {
     await reserva.save();
 
     if(status === 'cancelada') {
-      await Quarto.update({ status: 'Disponível' }, { where: { id: reserva.quartoId } });
+      await Quartos.update({ status: 'Disponível' }, { where: { id: reserva.quartoId } });
     }
 
     if(status === 'confirmada' || status === 'pendente') {
-      await Quarto.update({ status: 'Reservado' }, { where: { id: reserva.quartoId } });
+      await Quartos.update({ status: 'Reservado' }, { where: { id: reserva.quartoId } });
     }
 
     res.json(reserva);
